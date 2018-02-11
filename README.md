@@ -1,6 +1,10 @@
 # myapp
 
-> A Vue.js project
+> A Vue.js sample project based on Video analyzer.
+
+> The project has a single component called index.vue located in src>components>index.vue.
+
+> The dashboard displays the count of number of times user has clicked the play/pause button, the total duration the user has viewed the video and the seek duration the user has ckicked.
 
 ## Build Setup
 
