@@ -1,12 +1,41 @@
 <template>
   <div id="app">
-    <router-view/>
+    <header-component></header-component>
+    <video-player @pauseCounter="pauseCount = $event" @playCounter="playCount = $event" @timer="timer = $event" @seekedTimeValue="addSeekedTimeValues($event)"></video-player>
+    <analytics-component :play="playCount" :pause="pauseCount" :timer="timer" ></analytics-component>
   </div>
 </template>
 
 <script>
+import videoPlayer from '@/components/videoPlayer'
+import header from '@/components/header'
+import analytics from '@/components/analytics'
+import {EventBus}  from '@/event-bus.js';
+
+
+// import SideBar from './SideBar.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'video-player': videoPlayer,
+    'header-component':header,
+    'analytics-component' : analytics
+  },
+  data(){
+    return{
+      playCount:0,
+      pauseCount:0,
+      timer:'',
+      seekedTimeValue:[]
+    }
+  },
+  methods:{
+    addSeekedTimeValues(data){
+      console.log(data);
+      EventBus.$emit('seekValue', data);
+    }
+  }
 }
 </script>
 
